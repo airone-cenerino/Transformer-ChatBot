@@ -1,0 +1,12 @@
+/TwitterCrawl/__pycache__/*
+/TwitterCrawl/private_key.py
+
+/Word2Vec/*.txt
+
+/Preprocessing/before_preprocessing_data/*
+/Preprocessing/jawiki.200d.word_list.pickle
+
+/TransformerModel/corpus_data/*
+/TransformerModel/src/__pycache__/*
+/TransformerModel/database_data/*
+/TransformerModel/trained_model_data/*

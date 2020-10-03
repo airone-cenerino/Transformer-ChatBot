@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-import os, time
+import os, time, datetime
 import process_data, setting
 
 
@@ -77,15 +77,18 @@ def train_iters(dataset, model, criterion, optimizer, epoch_num):
             loss = train_batch(model, criterion, optimizer, src_ids, trg_ids)  # バッチを渡して学習させる。
             epoch_loss += loss
 
-            # if i%500 == 0:
+            # if i % 500 == 0:
             #     print("{:.1f}%完了".format(i / len(dataloader) * 100))
             #     print(loss)
+            #     print(epoch_loss / (i))
+                #print("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}".format(epoch, epoch / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i), time.time()))
+
             i+=1
 
 
         elapsed = time.time() - start
         # 進捗状況の表示
-        print("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}sec".format(epoch, epoch / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i-1), elapsed))
+        print("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}sec, {}".format(epoch, epoch / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i-1), elapsed, datetime.datetime.now()))
 
 
         # チェックポイントの保存

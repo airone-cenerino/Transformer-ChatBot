@@ -44,6 +44,6 @@ if __name__ == "__main__":
 
 
     model, optimizer, criterion, epoch_num = model_manager.get_model(setting.IS_TRAIN_FROM_THE_MIDDLE, tokenizer)  # モデルの取得。
-    optimizer.optimizer._step = int(epoch_num * database.pair_num /setting.BATCH_SIZE) # optimizerのLearningRateが途中から学習の際に初めからにならないようにする。
+    optimizer._step = int(epoch_num * database.pair_num /setting.BATCH_SIZE) # optimizerのLearningRateが途中から学習の際に初めからにならないようにする。
 
     model_training.train_iters(dataset, model, criterion, optimizer, epoch_num)    # トレーニング開始

@@ -27,9 +27,9 @@ def make_database():
 
 
 # 保存済みのデータベースをロードしてインスタンスを返す。
-def load_database():
+def load_database(database_name=setting.DATABASE_SAVE_FILE_NAME):
     database = corpus_database.CorpusDatabase()  # コーパスのデータベース初期化
-    save_data = torch.load(os.path.join(setting.DATABASE_SAVE_DIR, setting.DATABASE_SAVE_FILE_NAME))
+    save_data = torch.load(os.path.join(setting.DATABASE_SAVE_DIR, database_name))
 
     # インスタンスに直接読み込ませる。
     database.__dict__ = save_data["corpus_database"]        

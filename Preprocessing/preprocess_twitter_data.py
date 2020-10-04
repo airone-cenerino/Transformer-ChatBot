@@ -3,8 +3,7 @@ import pickle
 import MeCab
 import os
 
-DATA_FILE_NAMES = ["あるtweet2020-04-09", "あるtweet2020-04-10", "です。tweet2020-04-09", "です。tweet2020-04-10", "です。tweet2020-04-11", "です。tweet2020-04-13", 
-                    "ですよ！tweet2020-04-13", "ですよ！tweet2020-04-14", "私tweet2020-04-09", "私はtweet2020-04-11", "私はtweet2020-04-12"]
+DATA_FILE_NAMES = ["です。tweet2020-10-04", "私はtweet2020-10-04"]
                     
 WORD2VEC_CORPUS_FILE_NAME = "jawiki.200d.word_list.pickle"
 

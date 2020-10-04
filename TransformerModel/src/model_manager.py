@@ -81,22 +81,21 @@ def make_model(vocab_size, N=6, d_model=setting.EMBEDDING_DIM, d_ff=2048, h=8, d
 
 
 # チェックポイントでセーブされた学習済みモデルのデータをロードする。
-def load_checkpoint():
-    checkpoint = torch.load(os.path.join(setting.MODEL_SAVE_DIR, '{}_{}.tar'.format(setting.LOAD_MODEL_EPOCH_NUM, 'epoch')))
-    #checkpoint = torch.load(os.path.join(setting.MODEL_SAVE_DIR, '{}_{}.tar'.format(setting.LOAD_MODEL_EPOCH_NUM, 'epoch')), map_location=torch.device('cpu'))    # GPUのモデルをCPUに移すときはこれを使う。
+def load_checkpoint(epoch_num):
+    checkpoint = torch.load(os.path.join(setting.MODEL_SAVE_DIR, '{}_{}.tar'.format(epoch_num, 'epoch')))
+    #checkpoint = torch.load(os.path.join(setting.MODEL_SAVE_DIR, '{}_{}.tar'.format(epoch_num, 'epoch')), map_location=torch.device('cpu'))    # GPUのモデルをCPUに移すときはこれを使う。
 
     model_sd = checkpoint['model']
     optimizer_sd = checkpoint['opt']
-    epoch_num = checkpoint["epoch"]
     
-    return model_sd, optimizer_sd, epoch_num
+    return model_sd, optimizer_sd
 
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 # モデル・optimizerを作成 or ロードして返す。
-def get_model(is_load_model, tokenizer):
+def get_model(is_load_model, tokenizer, epoch_num=setting.LOAD_MODEL_EPOCH_NUM):
     model = make_model(tokenizer.vocab_size)
 
     #optimizer = NoamOpt(model.src_embed[0].d_model, 2, 400, torch.optim.Adam(model.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9))
@@ -107,7 +106,6 @@ def get_model(is_load_model, tokenizer):
     # plt.plot(np.arange(1, 20000), [[opt.rate(i) for opt in opts] for i in range(1, 20000)])
     # plt.legend(["1:400", "2:4000", "2:400"])
     # plt.show()
-    epoch_num = 0
 
     
     
@@ -116,7 +114,7 @@ def get_model(is_load_model, tokenizer):
 
     # ここでロードしてモデルにパラメータを与える。
     if is_load_model:
-        model_sd, optimizer_sd, epoch_num = load_checkpoint()
+        model_sd, optimizer_sd = load_checkpoint(epoch_num)
         model.load_state_dict(model_sd)
         optimizer.optimizer.load_state_dict(optimizer_sd)
         print(epoch_num, "epochのモデルをロードしました。")

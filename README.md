@@ -28,6 +28,7 @@ oath_key_dict = {
 
 6. `/TransformerModel/src/setting.py` の読み込む学習済みパラメータファイルを設定してから、`/TransformerModel/src/3-dialogue.py` を実行してBotとの対話を行うことができる。
 
+
 ---
 
 # コード解説
@@ -68,11 +69,13 @@ https://github.com/singletongue/WikiEntVec/releases からダウンロードし�
   + 1-make_database_main.py : コーパスデータベースを作成する。
   + 2-train.py : モデルの学習を行う。
   + 3-dialogue.py : モデルと対話する。
+  + 4-eval.py : モデルの評価を行う。
   + corpus_database.py : コーパスのデータベースそのもののクラス。
   + corpus_loader.py :  コーパスデータベースを読み込む。
   + database_manager.py : コーパスデータベースを扱うときに使う。
   + model_manager.py : モデルを扱うときに使う。
   + model_training.py : モデルを学習する関数が配置されている。
+  + model_eval.py : モデルを評価する関数が配置されている。
   + network_model.py : モデルの定義が書かれている。
   + process_data.py : バッチの定義がかかれている。
   + setting.py : 設定

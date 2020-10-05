@@ -118,6 +118,8 @@ def get_model(is_load_model, tokenizer, epoch_num=setting.LOAD_MODEL_EPOCH_NUM):
         model.load_state_dict(model_sd)
         optimizer.optimizer.load_state_dict(optimizer_sd)
         print(epoch_num, "epochのモデルをロードしました。")
+    else:
+        epoch_num=1
     
     
     # If you have cuda, configure cuda to call

@@ -45,4 +45,6 @@ def eval_model(dataset, model, criterion, epoch_num):
 
     elapsed = time.time() - start
     # 進捗状況の表示
-    print("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}sec, {}".format(epoch_num, epoch_num / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i-1), elapsed, datetime.datetime.now()))
+    print("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}sec, {}".format(epoch_num, epoch_num / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i - 1), elapsed, datetime.datetime.now()))
+    with open("eval_log.txt", "a", encoding="utf-8") as logFile:
+        logFile.write("Epoch: {}; Percent complete: {:.1f}%; loss: {:.4f}, {}sec, {}\n".format(epoch_num, epoch_num / setting.MAX_EPOCH_NUM * 100, epoch_loss / (i - 1), elapsed, datetime.datetime.now()))

@@ -37,7 +37,7 @@ def make_reply(input_sentence, model, tokenizer):
     ys = ys.view(-1).detach().cpu().numpy().tolist()[1:]
     text = tokenizer.decode(ys, skip_special_tokens = True, clean_up_tokenization_spaces=True)
 
-    return text.replace(' ', '')
+    return text.replace(' ', '').split("。")[0]+"。"
 
 
 if __name__ == "__main__":
